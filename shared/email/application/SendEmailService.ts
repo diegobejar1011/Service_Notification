@@ -7,13 +7,17 @@ export class SendEmailService {
     constructor(private readonly emailRepository: EmailRepository, private readonly databaseRepository: DatabaseRepository) {}
     async execute(notification: NotificationReq) : Promise<void>{
         try {
-
             const to = await this.databaseRepository.getUser(notification.id_habitat);
-
+            console.log(to);
             const email: Email = {
                 to: `${to}`,
                 subject: `Notification del habitat ${notification.id_habitat}`,
-                text: `Datos registrados ${JSON.stringify(notification)}`
+                text: `Datos registrados 
+                    Calificacion de la temperatura: ${notification.noteTemperature}
+                    Calificacion de la humedad: ${notification.noteHumidity}
+                    ¿Hubo movimiento? ${notification.movement ? "Si" : "No"}
+                    Calificacion del habitat ${notification.note}
+                `
             }
             
             this.emailRepository.sendMail(email);

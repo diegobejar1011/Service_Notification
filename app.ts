@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
+import { db } from './shared/database/application/connection';
+import { indexRouter } from './shared/indexRouter';
 
 config();
 
@@ -13,4 +15,15 @@ app.set('PORT', process.env.PORT || 3000);
 
 app.listen(app.get('PORT'), ()=>{
     console.log(`Server is running`);
+});
+
+app.use('/api', indexRouter);
+
+//Conexion a la bd
+db.connect()
+.then(()=> {
+    console.log("Connected");
+})
+.catch((error) => {
+    console.log(error);
 })

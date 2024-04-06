@@ -6,6 +6,7 @@ export class MySQLRepository implements DatabaseRepository {
         try {
             const query = 'SELECT id_user, u.email FROM habitat AS h INNER JOIN user AS u ON h.id_user = u.id WHERE h.id = ?';
             const [row] : any = await db.execute(query, [id_habitat]);
+            console.log(row[0].email);
             return row[0].email;
         } catch (error: any) {
             throw new Error(error);
