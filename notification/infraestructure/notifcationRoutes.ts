@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { notifyController } from "./Notifcationdependencies";
+import { notifyController } from "./notifcationDependencies";
 
 export const notificationRouter = Router();
 

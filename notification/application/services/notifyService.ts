@@ -10,9 +10,9 @@ export class NotifyService {
     ) {}
     async execute(parameters: NotificationReq): Promise<void> {
         try {
-            // await this.sendEmailService.execute(parameters);
-            // await this.sendNotificationService.execute(parameters);
-            await this.sendMessageService.execute(parameters);
+            await this.sendEmailService.execute(parameters);
+            await this.sendNotificationService.execute(parameters);
+           // await this.sendMessageService.execute(parameters);
         } catch (error: any) {
             throw new Error(error);
         }

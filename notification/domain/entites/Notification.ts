@@ -1,8 +1,9 @@
 export interface Notification {
-    id_habitat: string; 
+    id: number;
+    id_habitat: number; 
     noteTemperature: string;
     noteHumidity: string;
-    movement: boolean;
+    movement: string;
     note: string;
-    date: Date;
+    record_at: string;
 }

@@ -1,6 +1,8 @@
 import { NodemailerRepository } from "../../shared/email/infraestructure/ports/NodemailerRepository";
 import { SocketIORepository } from "../../shared/socket/infraestructure/SocketIORepository";
 import { MySQLRepository } from "../../shared/email/infraestructure/ports/MySQLRepository";
+import { SMySQLRepository } from "../../shared/socket/infraestructure/SMySQLRepository";
+import { JWTRepository } from "../../shared/socket/infraestructure/JWTRepository";
 //SNS
 import { SNSRepository } from "../../shared/sms/infraestructure/SNSRepository";
 
@@ -14,11 +16,13 @@ import { NotifyService } from "../application/services/notifyService";
 import { NotifyController } from "./controllers/NotifyController";
 
 const nodemailerRepository = new NodemailerRepository();
-const socketIORepository = new SocketIORepository('...');
+const socketIORepository = new SocketIORepository("https://t5p0pst1-3000.usw3.devtunnels.ms/");
 const mysqlRepository = new MySQLRepository();
 const snsRepository = new SNSRepository();
+const smysqlRepository = new SMySQLRepository();
+const jwtRepository = new JWTRepository();
 
-const sendNotificationService = new SendNotificationService(socketIORepository);
+const sendNotificationService = new SendNotificationService(socketIORepository, smysqlRepository, jwtRepository);
 const sendEmailService = new SendEmailService(nodemailerRepository,mysqlRepository);
 const sendMessageService = new SendMessageService(snsRepository);
 

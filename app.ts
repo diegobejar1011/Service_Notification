@@ -11,7 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.set('PORT', process.env.PORT || 3000);
+app.set('PORT', 3000);
 
 app.listen(app.get('PORT'), ()=>{
     console.log(`Server is running`);
