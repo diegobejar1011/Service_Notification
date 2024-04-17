@@ -1,3 +1,3 @@
 export interface DatabaseRepository {
-    getUser(id_habitat: string) : Promise<string>;
+    getUser(id_habitat: number) : Promise<string>;
 }

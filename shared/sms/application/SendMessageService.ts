@@ -1,10 +1,10 @@
 import { Message } from "../domain/entities/Message";
 import { MessageRepository } from "../domain/repositories/MessageRepository";
-import { NotificationReq } from "../../../notification/domain/entites/NotificationReq";
+import { Notification } from "../../../notification/domain/entites/Notification";
 
 export class SendMessageService {
     constructor(private readonly messageRepository: MessageRepository) {}
-    async execute(notification: NotificationReq) : Promise<void>{
+    async execute(notification: Notification) : Promise<void>{
         try {
             const message : Message = {
                 subject: `Notificacion del habitat ${notification.id_habitat}`,

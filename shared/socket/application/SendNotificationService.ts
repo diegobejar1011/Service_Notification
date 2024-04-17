@@ -1,17 +1,16 @@
 import { SocketRepository } from "../domain/repositories/SocketRepository";
 import { Notification } from "../../../notification/domain/entites/Notification";
 import { Events } from "../domain/entities/Events";
-import { NotificationReq } from "../../../notification/domain/entites/NotificationReq";
+import { DatabaseRepository } from "../domain/repositories/SDatabaseRepository";
+import { TokenRepository } from "../domain/repositories/TokenRepository";
 
 export class SendNotificationService {
-    constructor(private readonly socketRepository: SocketRepository) {}
-    async execute(parameters: NotificationReq): Promise<void> {
+    constructor(private readonly socketRepository: SocketRepository, private readonly databaseRepository: DatabaseRepository, private readonly tokenRepository : TokenRepository) {}
+    async execute(notification: Notification): Promise<void> {
         try {
-            const Notification : Notification = {
-                ...parameters,
-                date: new Date()
-            }
-            await this.socketRepository.notify(Events.SEND_DATA, Notification);
+            const id_user : number = await this.databaseRepository.getUser(notification.id_habitat);
+            const token : string = this.tokenRepository.createToken(id_user);
+            await this.socketRepository.notify(Events.SEND_DATA, notification, token);
         } catch (error : any) {
             throw new Error(error);
         }
