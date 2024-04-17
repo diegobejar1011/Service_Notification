@@ -16,7 +16,7 @@ import { NotifyService } from "../application/services/notifyService";
 import { NotifyController } from "./controllers/NotifyController";
 
 const nodemailerRepository = new NodemailerRepository();
-const socketIORepository = new SocketIORepository("http://localhost:5000/");
+const socketIORepository = new SocketIORepository("http://44.223.186.80:5000/");
 const mysqlRepository = new MySQLRepository();
 const snsRepository = new SNSRepository();
 const smysqlRepository = new SMySQLRepository();

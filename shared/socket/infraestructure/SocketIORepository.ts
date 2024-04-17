@@ -27,6 +27,9 @@ export class SocketIORepository implements SocketRepository {
         return new Promise<void> ( async (resolve, reject) => {
             try {
                 const socket = await this.connect(token);
+                socket.on('connect', () => {
+                    console.log(socket.id);
+                })
                 socket.emit(eventEmit, notification);
                 resolve();
             } catch (error: any ) {

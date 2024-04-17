@@ -22,7 +22,7 @@ app.use('/api', indexRouter);
 //Conexion a la bd
 db.connect()
 .then(()=> {
-    console.log("Connected");
+    console.log("Connected to database");
 })
 .catch((error) => {
     console.log(error);
